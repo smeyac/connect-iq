@@ -1,0 +1,28 @@
+<strings>
+  <string id="AppName">Binary Elegance</string>
+  <string id="bgStr">tbd</string>
+  <string id="hbgStr">tbd</string>
+  <string id="hfgStr">tbd</string>
+  <string id="mbgStr">tbd</string>
+  <string id="mfgStr">tbd</string>
+  <string id="bcStr">tbd</string>
+  <string id="ncStr">tbd</string>
+  <string id="acStr">tbd</string>
+  <string id="pcStr">tbd</string>
+
+  <string id="clrBlack">Black</string>
+  <string id="clrDarkGray">Dark Gray</string>
+  <string id="clrLightGray">Light Gray</string>
+  <string id="clrWhite">White</string>
+  <string id="clrBlue">Blue</string>
+  <string id="clrDarkBlue">Dark Blue</string>
+  <string id="clrRed">Red</string>
+  <string id="clrDarkRed">Dark Red</string>
+  <string id="clrOrange">Orange</string>
+  <string id="clrYellow">Yellow</string>
+  <string id="clrRed">Red</string>
+  <string id="clrGreen">Green</string>
+  <string id="clrDarkGreen">Dark Green</string>
+  <string id="clrPurple">Purple</string>
+  <string id="clrPink">Pink</string>
+</strings>
