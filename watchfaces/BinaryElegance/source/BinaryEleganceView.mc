@@ -155,12 +155,24 @@ class BinaryEleganceView extends Ui.WatchFace {
     var size = icons.size();
     if (size > 0) {
       var values = icons.values();
-      var x = centerX - (size == 1 ? 0 : (size == 2 ? ICON_OFFSET/2 : ICON_OFFSET));
-      var y = screenH - 15;
-      for (var i = 0; i < size; ++i) {
-        ctx.setColor(colors.get(values[i]), colors.get("bg"));
-        ctx.drawText(x, y, iconFont, values[i], JUSTIFICATION);
-        x += ICON_OFFSET;
+      var shape = settings.screenShape;
+      var x, y;
+      if (shape == Sys.SCREEN_SHAPE_ROUND || shape == Sys.SCREEN_SHAPE_SEMI_ROUND) {
+        x = centerX - (size == 1 ? 0 : (size == 2 ? ICON_OFFSET/2 : ICON_OFFSET));
+        y = screenH - (shape == Sys.SCREEN_SHAPE_ROUND ? 30 : 20);
+        for (var i = 0; i < size; ++i) {
+          ctx.setColor(colors.get(values[i]), colors.get("bg"));
+          ctx.drawText(x, y, iconFont, values[i], JUSTIFICATION);
+          x += ICON_OFFSET;
+        }
+      } else {
+        x = screenW - 25;
+        y = centerY- (size == 1 ? 0 : (size == 2 ? ICON_OFFSET/2 : ICON_OFFSET));
+        for (var i = 0; i < size; ++i) {
+          ctx.setColor(colors.get(values[i]), colors.get("bg"));
+          ctx.drawText(x, y, iconFont, values[i], JUSTIFICATION);
+          y += ICON_OFFSET;
+        }
       }
     }
   }
