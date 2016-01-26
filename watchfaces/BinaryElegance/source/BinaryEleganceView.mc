@@ -28,15 +28,16 @@ class BinaryEleganceView extends Ui.WatchFace {
   const ICON_BLUETOOTH = "3";
   const ICON_OFFSET = 30;
   const JUSTIFICATION = Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER;
-  const SQUARE_SIZE = 14;
 
   hidden var active = false;
+  hidden var batteryOffset = 2;
   hidden var centerX, centerY, screenH, screenW;
   hidden var ctx;
   hidden var colors = {};
   hidden var iconFont;
   hidden var is24Hour = false;
   hidden var shapeOffset;
+  hidden var squareSize;
 
   function onLayout(dc) {
     ctx = dc;
@@ -61,15 +62,22 @@ class BinaryEleganceView extends Ui.WatchFace {
     iconFont = Ui.loadResource(Rez.Fonts.id_font);
 
     var app = App.getApp();
-    colors.put("bg", app.getProperty("bg"));
-    colors.put("hbg", app.getProperty("hbg"));
-    colors.put("hfg", app.getProperty("hfg"));
-    colors.put("mbg", app.getProperty("mbg"));
-    colors.put("mfg", app.getProperty("mfg"));
-    colors.put(ICON_ALARM, app.getProperty("ac"));
-    colors.put(ICON_POWER, app.getProperty("pc"));
-    colors.put(ICON_NOTIFICATION, app.getProperty("nc"));
-    colors.put(ICON_BLUETOOTH, app.getProperty("bc"));
+    colors.put("bg", app.getProperty("background"));
+    colors.put("hbg", app.getProperty("hoursInactive"));
+    colors.put("hfg", app.getProperty("hoursActive"));
+    colors.put("mbg", app.getProperty("minutesInactive"));
+    colors.put("mfg", app.getProperty("minutesActive"));
+    colors.put("obg", app.getProperty("otherInactive"));
+    colors.put("ofg", app.getProperty("otherActive"));
+    colors.put(ICON_ALARM, app.getProperty("alarmColor"));
+    colors.put(ICON_POWER, app.getProperty("powerColor"));
+    colors.put(ICON_NOTIFICATION, app.getProperty("notificationsColor"));
+    colors.put(ICON_BLUETOOTH, app.getProperty("bluetoothColor"));
+
+    squareSize = app.getProperty("squareSize");
+    if (app.getProperty("showOther") == false) {
+      batteryOffset = 0;
+    }
   }
 
   function onHide() {
@@ -85,8 +93,10 @@ class BinaryEleganceView extends Ui.WatchFace {
     drawHours(clockTime.hour);
     drawMinutes(clockTime.min);
 
-    var stats = Sys.getSystemStats();
-    drawOther(active? clockTime.sec : stats.battery);
+    if (batteryOffset > 0) {
+      var stats = Sys.getSystemStats();
+      drawOther(active? clockTime.sec : stats.battery);
+    }
 
     drawIcons();
   }
@@ -110,44 +120,44 @@ class BinaryEleganceView extends Ui.WatchFace {
         }
     }
 
-    x = centerX - 5.5*SQUARE_SIZE;
-    y = centerY + 4.5*SQUARE_SIZE;
+    x = centerX - 5.5*squareSize;
+    y = centerY + 4.5*squareSize;
     digit = hours/10;
 
     for (var i = bounds; i > 0; --i) {
       setForeground(colors.get(digit & i > 0 ? "hfg" : "hbg"));
-      drawSquare(x, y - 2*i*SQUARE_SIZE);
+      drawSquare(x, y - 2*i*squareSize);
     }
 
-    x = centerX - 3.5*SQUARE_SIZE;
-    y = centerY + 2.5*SQUARE_SIZE;
+    x = centerX - 3.5*squareSize;
+    y = centerY + 2.5*squareSize;
     digit = hours%10;
 
     for (var i = 0; i < 4; ++i) {
       setForeground(colors.get(digit & (1 << i) > 0 ? "hfg" : "hbg"));
-      drawSquare(x, y - 2*i*SQUARE_SIZE);
+      drawSquare(x, y - 2*i*squareSize);
     }
   }
 
   hidden function drawMinutes(minutes) {
     var x, y, digit;
 
-    x = centerX - 1.5*SQUARE_SIZE;
-    y = centerY + 2.5*SQUARE_SIZE;
+    x = centerX - 1.5*squareSize;
+    y = centerY + 2.5*squareSize;
     digit = minutes/10;
 
     for (var i = 0; i < 3; ++i) {
       setForeground(colors.get(digit & (1 << i) > 0 ? "mfg" : "mbg"));
-      drawSquare(x, y - 2*i*SQUARE_SIZE);
+      drawSquare(x, y - 2*i*squareSize);
     }
 
-    x = centerX + 0.5*SQUARE_SIZE;
-    y = centerY + 2.5*SQUARE_SIZE;
+    x = centerX + 0.5*squareSize;
+    y = centerY + 2.5*squareSize;
     digit = minutes%10;
 
     for (var i = 0; i < 4; ++i) {
       setForeground(colors.get(digit & (1 << i) > 0 ? "mfg" : "mbg"));
-      drawSquare(x, y - 2*i*SQUARE_SIZE);
+      drawSquare(x, y - 2*i*squareSize);
     }
   }
 
@@ -155,22 +165,23 @@ class BinaryEleganceView extends Ui.WatchFace {
     var value = (other > 99 ? 99 : other).toNumber();
     var x, y, digit;
 
-    x = centerX + 2.5*SQUARE_SIZE;
-    y = centerY + 2.5*SQUARE_SIZE;
+    x = centerX + 2.5*squareSize;
+    y = centerY + 2.5*squareSize;
     digit = value/10;
 
-    for (var i = 0; i < 4; ++i) {
+    var bounds = active ? 3 : 4;
+    for (var i = 0; i < bounds; ++i) {
       setForeground(colors.get(digit & (1 << i) > 0 ? "mfg" : "mbg"));
-      drawSquare(x, y - 2*i*SQUARE_SIZE);
+      drawSquare(x, y - 2*i*squareSize);
     }
 
-    x = centerX + 4.5*SQUARE_SIZE;
-    y = centerY + 2.5*SQUARE_SIZE;
+    x = centerX + 4.5*squareSize;
+    y = centerY + 2.5*squareSize;
     digit = value%10;
 
     for (var i = 0; i < 4; ++i) {
       setForeground(colors.get(digit & (1 << i) > 0 ? "mfg" : "mbg"));
-      drawSquare(x, y - 2*i*SQUARE_SIZE);
+      drawSquare(x, y - 2*i*squareSize);
     }
   }
 
@@ -205,7 +216,7 @@ class BinaryEleganceView extends Ui.WatchFace {
   }
 
   hidden function drawSquare(x, y) {
-    ctx.fillRectangle(x, y, SQUARE_SIZE, SQUARE_SIZE);
+    ctx.fillRectangle(x, y, squareSize, squareSize);
   }
 
   hidden function setForeground(color) {
