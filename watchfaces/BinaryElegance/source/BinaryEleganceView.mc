@@ -30,7 +30,7 @@ class BinaryEleganceView extends Ui.WatchFace {
   const JUSTIFICATION = Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER;
 
   hidden var active = false;
-  hidden var batteryOffset = 2;
+  hidden var batteryOffset;
   hidden var centerX, centerY, screenH, screenW;
   hidden var ctx;
   hidden var colors = {};
@@ -75,9 +75,7 @@ class BinaryEleganceView extends Ui.WatchFace {
     colors.put(ICON_BLUETOOTH, app.getProperty("bluetoothColor"));
 
     squareSize = app.getProperty("squareSize");
-    if (app.getProperty("showOther") == false) {
-      batteryOffset = 0;
-    }
+    batteryOffset = app.getProperty("showOther") ? 0 : 2;
   }
 
   function onHide() {
@@ -93,7 +91,7 @@ class BinaryEleganceView extends Ui.WatchFace {
     drawHours(clockTime.hour);
     drawMinutes(clockTime.min);
 
-    if (batteryOffset > 0) {
+    if (batteryOffset == 0) {
       var stats = Sys.getSystemStats();
       drawOther(active? clockTime.sec : stats.battery);
     }
@@ -120,7 +118,7 @@ class BinaryEleganceView extends Ui.WatchFace {
         }
     }
 
-    x = centerX - 5.5*squareSize;
+    x = centerX - (5.5-batteryOffset)*squareSize;
     y = centerY + 4.5*squareSize;
     digit = hours/10;
 
@@ -129,7 +127,7 @@ class BinaryEleganceView extends Ui.WatchFace {
       drawSquare(x, y - 2*i*squareSize);
     }
 
-    x = centerX - 3.5*squareSize;
+    x = centerX - (3.5-batteryOffset)*squareSize;
     y = centerY + 2.5*squareSize;
     digit = hours%10;
 
@@ -142,7 +140,7 @@ class BinaryEleganceView extends Ui.WatchFace {
   hidden function drawMinutes(minutes) {
     var x, y, digit;
 
-    x = centerX - 1.5*squareSize;
+    x = centerX - (1.5-batteryOffset)*squareSize;
     y = centerY + 2.5*squareSize;
     digit = minutes/10;
 
@@ -151,7 +149,7 @@ class BinaryEleganceView extends Ui.WatchFace {
       drawSquare(x, y - 2*i*squareSize);
     }
 
-    x = centerX + 0.5*squareSize;
+    x = centerX + (0.5+batteryOffset)*squareSize;
     y = centerY + 2.5*squareSize;
     digit = minutes%10;
 
