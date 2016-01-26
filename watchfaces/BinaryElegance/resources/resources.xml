@@ -8,19 +8,35 @@
   </fonts>
 
   <properties>
-    <property id="bg" type="number">0x000000</property>
-    <property id="hbg" type="number">0x555555</property>
-    <property id="hfg" type="number">0xFFFFFF</property>
-    <property id="mbg" type="number">0x555555</property>
-    <property id="mfg" type="number">0xFFFFFF</property>
-    <property id="ac" type="number">0xFFFFFF</property>
-    <property id="bc" type="number">0xFFFFFF</property>
-    <property id="nc" type="number">0xFFFFFF</property>
-    <property id="pc" type="number">0xFFFFFF</property>
+    <property id="background" type="number">0x000000</property>
+    <property id="hoursInactive" type="number">0x555555</property>
+    <property id="hoursActive" type="number">0xFFFFFF</property>
+    <property id="minutesInactive" type="number">0x555555</property>
+    <property id="minutesActive" type="number">0xFFFFFF</property>
+    <property id="otherInactive" type="number">0x555555</property>
+    <property id="otherActive" type="number">0xFFFFFF</property>
+    <property id="alarmColor" type="number">0xFFFFFF</property>
+    <property id="bluetoothColor" type="number">0xFFFFFF</property>
+    <property id="notificationsColor" type="number">0xFFFFFF</property>
+    <property id="powerColor" type="number">0xFFFFFF</property>
+    <property id="showOther" type="boolean">true</property>
+    <property id="squareSize" type="number">15</property>
   </properties>
 
   <settings>
-    <setting propertyKey="@Properties.bg" title="@Strings.bgStr">
+    <setting propertyKey="@Properties.showOther" title="@Strings.showOtherStr">
+      <settingConfig type="boolean" />
+    </setting>
+
+    <setting propertyKey="@Properties.squareSize" title="@Strings.squareSizeStr">
+      <settingConfig type="list">
+        <listEntry value="10">@Strings.smallStr</listEntry>
+        <listEntry value="12">@Strings.mediumStr</listEntry>
+        <listEntry value="15">@Strings.largeStr</listEntry>
+      </settingConfig>
+    </setting>
+
+    <setting propertyKey="@Properties.background" title="@Strings.backgroundStr">
       <settingConfig type="list">
         <listEntry value="0x000000">@Strings.clrBlack</listEntry>
         <listEntry value="0xFFFFFF">@Strings.clrWhite</listEntry>
@@ -38,8 +54,8 @@
         <listEntry value="0xAA00FF">@Strings.clrPurple</listEntry>
       </settingConfig>
     </setting>
-  
-    <setting propertyKey="@Properties.hbg" title="@Strings.hbgStr">
+
+    <setting propertyKey="@Properties.hoursInactive" title="@Strings.hoursInactiveStr">
       <settingConfig type="list">
         <listEntry value="0x000000">@Strings.clrBlack</listEntry>
         <listEntry value="0xFFFFFF">@Strings.clrWhite</listEntry>
@@ -57,8 +73,8 @@
         <listEntry value="0xAA00FF">@Strings.clrPurple</listEntry>
       </settingConfig>
     </setting>
-  
-    <setting propertyKey="@Properties.hfg" title="@Strings.hfgStr">
+
+    <setting propertyKey="@Properties.hoursActive" title="@Strings.hoursActiveStr">
       <settingConfig type="list">
         <listEntry value="0x000000">@Strings.clrBlack</listEntry>
         <listEntry value="0xFFFFFF">@Strings.clrWhite</listEntry>
@@ -76,8 +92,8 @@
         <listEntry value="0xAA00FF">@Strings.clrPurple</listEntry>
       </settingConfig>
     </setting>
-  
-    <setting propertyKey="@Properties.mbg" title="@Strings.mbgStr">
+
+    <setting propertyKey="@Properties.minutesInactive" title="@Strings.minutesInactiveStr">
       <settingConfig type="list">
         <listEntry value="0x000000">@Strings.clrBlack</listEntry>
         <listEntry value="0xFFFFFF">@Strings.clrWhite</listEntry>
@@ -95,8 +111,8 @@
         <listEntry value="0xAA00FF">@Strings.clrPurple</listEntry>
       </settingConfig>
     </setting>
-  
-    <setting propertyKey="@Properties.mfg" title="@Strings.mfgStr">
+
+    <setting propertyKey="@Properties.minutesActive" title="@Strings.minutesActiveStr">
       <settingConfig type="list">
         <listEntry value="0x000000">@Strings.clrBlack</listEntry>
         <listEntry value="0xFFFFFF">@Strings.clrWhite</listEntry>
@@ -114,8 +130,8 @@
         <listEntry value="0xAA00FF">@Strings.clrPurple</listEntry>
       </settingConfig>
     </setting>
-    
-    <setting propertyKey="@Properties.ac" title="@Strings.acStr">
+
+    <setting propertyKey="@Properties.otherInactive" title="@Strings.otherInactiveStr">
       <settingConfig type="list">
         <listEntry value="0x000000">@Strings.clrBlack</listEntry>
         <listEntry value="0xFFFFFF">@Strings.clrWhite</listEntry>
@@ -133,8 +149,8 @@
         <listEntry value="0xAA00FF">@Strings.clrPurple</listEntry>
       </settingConfig>
     </setting>
-    
-    <setting propertyKey="@Properties.bc" title="@Strings.bcStr">
+
+    <setting propertyKey="@Properties.otherActive" title="@Strings.otherActiveStr">
       <settingConfig type="list">
         <listEntry value="0x000000">@Strings.clrBlack</listEntry>
         <listEntry value="0xFFFFFF">@Strings.clrWhite</listEntry>
@@ -152,8 +168,8 @@
         <listEntry value="0xAA00FF">@Strings.clrPurple</listEntry>
       </settingConfig>
     </setting>
-    
-    <setting propertyKey="@Properties.nc" title="@Strings.ncStr">
+
+    <setting propertyKey="@Properties.alarmColor" title="@Strings.alarmColorStr">
       <settingConfig type="list">
         <listEntry value="0x000000">@Strings.clrBlack</listEntry>
         <listEntry value="0xFFFFFF">@Strings.clrWhite</listEntry>
@@ -171,8 +187,46 @@
         <listEntry value="0xAA00FF">@Strings.clrPurple</listEntry>
       </settingConfig>
     </setting>
-    
-    <setting propertyKey="@Properties.pc" title="@Strings.pcStr">
+
+    <setting propertyKey="@Properties.bluetoothColor" title="@Strings.bluetoothColorStr">
+      <settingConfig type="list">
+        <listEntry value="0x000000">@Strings.clrBlack</listEntry>
+        <listEntry value="0xFFFFFF">@Strings.clrWhite</listEntry>
+        <listEntry value="0xAAAAAA">@Strings.clrLightGray</listEntry>
+        <listEntry value="0x555555">@Strings.clrDarkGray</listEntry>
+        <listEntry value="0x00AAFF">@Strings.clrBlue</listEntry>
+        <listEntry value="0x0000FF">@Strings.clrDarkBlue</listEntry>
+        <listEntry value="0x00FF00">@Strings.clrGreen</listEntry>
+        <listEntry value="0x00AA00">@Strings.clrDarkGreen</listEntry>
+        <listEntry value="0xFFAA00">@Strings.clrYellow</listEntry>
+        <listEntry value="0xFF5500">@Strings.clrOrange</listEntry>
+        <listEntry value="0xFF0000">@Strings.clrRed</listEntry>
+        <listEntry value="0xAA0000">@Strings.clrDarkRed</listEntry>
+        <listEntry value="0xFF00FF">@Strings.clrPink</listEntry>
+        <listEntry value="0xAA00FF">@Strings.clrPurple</listEntry>
+      </settingConfig>
+    </setting>
+
+    <setting propertyKey="@Properties.notificationsColor" title="@Strings.notificationsColorStr">
+      <settingConfig type="list">
+        <listEntry value="0x000000">@Strings.clrBlack</listEntry>
+        <listEntry value="0xFFFFFF">@Strings.clrWhite</listEntry>
+        <listEntry value="0xAAAAAA">@Strings.clrLightGray</listEntry>
+        <listEntry value="0x555555">@Strings.clrDarkGray</listEntry>
+        <listEntry value="0x00AAFF">@Strings.clrBlue</listEntry>
+        <listEntry value="0x0000FF">@Strings.clrDarkBlue</listEntry>
+        <listEntry value="0x00FF00">@Strings.clrGreen</listEntry>
+        <listEntry value="0x00AA00">@Strings.clrDarkGreen</listEntry>
+        <listEntry value="0xFFAA00">@Strings.clrYellow</listEntry>
+        <listEntry value="0xFF5500">@Strings.clrOrange</listEntry>
+        <listEntry value="0xFF0000">@Strings.clrRed</listEntry>
+        <listEntry value="0xAA0000">@Strings.clrDarkRed</listEntry>
+        <listEntry value="0xFF00FF">@Strings.clrPink</listEntry>
+        <listEntry value="0xAA00FF">@Strings.clrPurple</listEntry>
+      </settingConfig>
+    </setting>
+
+    <setting propertyKey="@Properties.powerColor" title="@Strings.powerColorStr">
       <settingConfig type="list">
         <listEntry value="0x000000">@Strings.clrBlack</listEntry>
         <listEntry value="0xFFFFFF">@Strings.clrWhite</listEntry>

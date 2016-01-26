@@ -1,14 +1,22 @@
 <strings>
   <string id="AppName">Binary Elegance</string>
-  <string id="bgStr">tbd</string>
-  <string id="hbgStr">tbd</string>
-  <string id="hfgStr">tbd</string>
-  <string id="mbgStr">tbd</string>
-  <string id="mfgStr">tbd</string>
-  <string id="bcStr">tbd</string>
-  <string id="ncStr">tbd</string>
-  <string id="acStr">tbd</string>
-  <string id="pcStr">tbd</string>
+  <string id="backgroundStr">Background color</string>
+  <string id="hoursInactiveStr">Hours: inactive state</string>
+  <string id="hoursActiveStr">Hours: active state</string>
+  <string id="minutesInactiveStr">Minutes: inactive state</string>
+  <string id="minutesActiveStr">Minutes: active state</string>
+  <string id="otherInactiveStr">Minutes: inactive state</string>
+  <string id="otherActiveStr">Minutes: active state</string>
+  <string id="bluetoothColorStr">Bluetooth icon color</string>
+  <string id="notificationsColorStr">Notifications icon color</string>
+  <string id="alarmColorStr">Alarm icon color</string>
+  <string id="powerColorStr">tbd</string>
+  <string id="showOtherStr">Show battery/seconds</string>
+  <string id="squareSizeStr">Size of squares</string>
+
+  <string id="smallStr">Small</string>
+  <string id="mediumStr">Medium</string>
+  <string id="largeStr">Large</string>
 
   <string id="clrBlack">Black</string>
   <string id="clrDarkGray">Dark Gray</string>
@@ -20,7 +28,6 @@
   <string id="clrDarkRed">Dark Red</string>
   <string id="clrOrange">Orange</string>
   <string id="clrYellow">Yellow</string>
-  <string id="clrRed">Red</string>
   <string id="clrGreen">Green</string>
   <string id="clrDarkGreen">Dark Green</string>
   <string id="clrPurple">Purple</string>
