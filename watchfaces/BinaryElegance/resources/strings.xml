@@ -5,8 +5,8 @@
   <string id="hoursActiveStr">Hours: active state</string>
   <string id="minutesInactiveStr">Minutes: inactive state</string>
   <string id="minutesActiveStr">Minutes: active state</string>
-  <string id="otherInactiveStr">Minutes: inactive state</string>
-  <string id="otherActiveStr">Minutes: active state</string>
+  <string id="otherInactiveStr">Seconds/Battery: inactive state</string>
+  <string id="otherActiveStr">Seconds/Battery: active state</string>
   <string id="bluetoothColorStr">Bluetooth icon color</string>
   <string id="notificationsColorStr">Notifications icon color</string>
   <string id="alarmColorStr">Alarm icon color</string>

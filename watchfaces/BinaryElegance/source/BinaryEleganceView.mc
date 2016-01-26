@@ -169,7 +169,7 @@ class BinaryEleganceView extends Ui.WatchFace {
 
     var bounds = active ? 3 : 4;
     for (var i = 0; i < bounds; ++i) {
-      setForeground(colors.get(digit & (1 << i) > 0 ? "mfg" : "mbg"));
+      setForeground(colors.get(digit & (1 << i) > 0 ? "ofg" : "obg"));
       drawSquare(x, y - 2*i*squareSize);
     }
 
@@ -178,7 +178,7 @@ class BinaryEleganceView extends Ui.WatchFace {
     digit = value%10;
 
     for (var i = 0; i < 4; ++i) {
-      setForeground(colors.get(digit & (1 << i) > 0 ? "mfg" : "mbg"));
+      setForeground(colors.get(digit & (1 << i) > 0 ? "ofg" : "obg"));
       drawSquare(x, y - 2*i*squareSize);
     }
   }
